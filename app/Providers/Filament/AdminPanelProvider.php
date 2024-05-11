@@ -27,6 +27,9 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->passwordReset()
+            ->emailVerification(config('app.env') !== 'local')
+            ->brandLogo(asset('favicon_io/android-chrome-512x512.png'))
             ->colors([
                 'primary' => Color::Amber,
             ])

@@ -36,8 +36,6 @@
         <meta name="twitter:site" content="@hultimatumgiver"> 
         <meta name="twitter:creator" content="@hultimatumgiver">
 
-
-
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,6 +55,11 @@
 
         <!-- Template Stylesheet -->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+        {{-- toastr --}}
+        <link rel="stylesheet" href="{{ asset('lib/toastr/toastr.min.css') }}">
+        {{-- custom css --}}
+
+        @stack('styles')
     </head>
 
     <body>
@@ -81,10 +84,13 @@
         <script src="{{ asset('assets/lib/owlcarousel/owl.carousel.min.js') }}"></script>
         <script src="{{ asset('assets/lib/isotope/isotope.pkgd.min.js') }}"></script>
         <script src="{{ asset('assets/lib/lightbox/js/lightbox.min.js') }}"></script>
+        <script src="{{ asset('lib/toastr/toastr.min.js') }}"></script>
 
+        <x-shared.toastr />
         <!-- Contact Javascript File -->
 
         <!-- Template Javascript -->
         <script src="{{ asset('assets/js/main.js') }}"></script>
+        @stack('scripts')
     </body>
 </html>

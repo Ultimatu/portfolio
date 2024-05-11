@@ -17,7 +17,20 @@ class PassionResource extends Resource
 {
     protected static ?string $model = Passion::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-cursor-arrow-ripple';
+
+
+    protected static ?string $activeNavigationIcon = 'heroicon-s-cursor-arrow-ripple';
+
+    protected static ?string $modelLabel = "Passion";
+
+    protected static ?string $navigationGroup = "A propos de moi";
+
+
+    protected static ?string $navigationLabel = "Passions";
+
+
+    protected static ?string $pluralModelLabel = "Passions";
 
     public static function form(Form $form): Form
     {

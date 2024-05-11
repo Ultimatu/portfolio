@@ -17,26 +17,50 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
+
+    protected static ?string $activeNavigationIcon = 'heroicon-s-user-group';
+
+    protected static ?string $modelLabel = "Compte utilisateur";
+
+    protected static ?string $navigationGroup = "Utilisateurs";
+
+
+
+    protected static ?string $navigationLabel = "Comptes utilisateurs";
+
+
+    protected static ?string $pluralModelLabel = "Comptes utilisateurs";
+
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label('Nom complet')
+                    ->placeholder('Entrez votre nom complet')
+                    ->prefixIcon('heroicon-o-user')
+                    ->prefixIconColor('success')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('phone')
                     ->tel()
+                    ->prefixIcon('heroicon-s-phone')
+                    ->prefixIconColor('success')
                     ->maxLength(255)
                     ->default(null),
                 Forms\Components\TextInput::make('email')
                     ->email()
+                    ->prefixIcon('heroicon-o-envelope')
+                    ->prefixIconColor('success')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('image')
                     ->image()
                     ->required(),
+                Forms\Components\Toggle::make('is_active')
+                    ->label('Actif'),
                 Forms\Components\DateTimePicker::make('email_verified_at'),
                 Forms\Components\TextInput::make('password')
                     ->password()
@@ -56,6 +80,9 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\BooleanColumn::make('is_active')
+                    ->label('Active')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->dateTime()
                     ->sortable(),

@@ -96,7 +96,7 @@ class MainController extends Controller
 
     public function hasDownloadedCv(Request $request)
     {
-        $visitor = Visitor::where('session_id', session()->getId())->first();
+        $visitor = Visitor::where('ip', $request->ip())->first();
         if ($visitor) {
             $visitor->update([
                 'has_downloaded_cv' => true

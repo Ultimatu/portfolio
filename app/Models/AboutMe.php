@@ -32,6 +32,7 @@ class AboutMe extends Model
         'youtube',
         'freelance_status',
         'is_active',
+        'positions',
     ];
 
     protected $casts = [

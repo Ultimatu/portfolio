@@ -17,7 +17,28 @@ class VisitorResource extends Resource
 {
     protected static ?string $model = Visitor::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-eye';
+
+    protected static ?string $activeNavigationIcon = 'heroicon-s-eye';
+
+    protected static ?string $modelLabel = "Visiteur";
+
+    protected static ?string $navigationGroup = "Visiteurs";
+
+
+    protected static ?string $navigationLabel = "Visiteurs";
+
+
+    protected static ?string $pluralModelLabel = "Visiteurs";
+
+
+    public static function canCreate():bool{
+        return false;
+    }
+    
+    public static function canEdit($record):bool{
+        return false;
+    }
 
     public static function form(Form $form): Form
     {
@@ -68,20 +89,41 @@ class VisitorResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('ip')
+                    ->badge()
+                    ->color('danger')
+                    ->icon('heroicon-o-globe-alt')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('session_id')
+                    ->badge()
+                    ->color('primary')
+                    ->icon('heroicon-o-command-line')
                     ->searchable(),
                 Tables\Columns\IconColumn::make('has_downloaded_cv')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('country')
+                    ->badge()
+                    ->color('info')
+                    ->icon('heroicon-o-globe')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('city')
+                    ->badge()
+                    ->color('info')
+                    ->icon('heroicon-o-globe')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('state')
+                    ->badge()
+                    ->color('info')
+                    ->icon('heroicon-o-globe')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('state_code')
+                    ->badge()
+                    ->color('info')
+                    ->icon('heroicon-o-globe')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('zip')
+                    ->badge()
+                    ->color('info')
+                    ->icon('heroicon-o-globe')
                     ->searchable(),
                 Tables\Columns\IconColumn::make('is_first_time')
                     ->boolean(),
@@ -92,8 +134,14 @@ class VisitorResource extends Resource
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('device')
+                    ->badge()
+                    ->color('warning')
+                    ->icon('heroicon-o-device-tablet')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('visits')
+                    ->badge()
+                    ->color('warning')
+                    ->icon('heroicon-s-arrow-trending-up')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('browser')

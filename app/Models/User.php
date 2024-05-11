@@ -57,13 +57,16 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
 
     public function getFilamentAvatarUrl(): string|null
     {
-        return $this->image;
+        if (str_contains($this->image, 'assets/img')) {
+            return  asset($this->image);
+        }
+        return asset('storage/' . $this->image);
     }
 
 
     public function getImageAttribute($value): string
     {
-        if (str_contains($value, 'assets/img/profile.jpeg')) {
+        if (str_contains($value, 'assets/img')) {
             return $value;
         }
         return asset('storage/' . $value);

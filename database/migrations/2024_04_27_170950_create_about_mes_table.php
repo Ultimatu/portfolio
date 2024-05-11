@@ -35,6 +35,7 @@ return new class extends Migration
             $table->string('youtube')->nullable();
             $table->boolean('freelance_status')->default(false);
             $table->boolean('is_active')->default(true);
+            $table->text('positions')->default('Backend Developer, Java Developer, Web Developer, Lead Backend');
             $table->timestamps();
         });
     }

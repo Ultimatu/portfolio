@@ -17,7 +17,25 @@ class NewsletterResource extends Resource
 {
     protected static ?string $model = Newsletter::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-envelope-open';
+
+    protected static ?string $activeNavigationIcon = 'heroicon-s-envelope-open';
+
+    protected static ?string $modelLabel = "Newsletter";
+
+    protected static ?string $navigationGroup = "Visiteurs";
+
+
+    protected static ?string $navigationLabel = "Newsletter";
+
+
+    protected static ?string $pluralModelLabel = "Newsletter";
+
+    public static function canCreate():bool{
+        return false;
+    }
+
+   
 
     public static function form(Form $form): Form
     {
@@ -46,8 +64,8 @@ class NewsletterResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\IconColumn::make('is_active')
-                    ->boolean(),
+                Tables\Columns\ToggleColumn::make('is_active')
+                    ->afterStateUpdated(fn($record, $state) => $record->update(['is_active' => $state])),
                 Tables\Columns\TextColumn::make('subscribed_at')
                     ->dateTime()
                     ->sortable(),

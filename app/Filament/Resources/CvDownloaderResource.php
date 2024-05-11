@@ -17,19 +17,34 @@ class CvDownloaderResource extends Resource
 {
     protected static ?string $model = CvDownloader::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-arrow-down-on-square-stack';
+
+    protected static ?string $activeNavigationIcon = 'heroicon-s-arrow-down-on-square-stack';
+
+    protected static ?string $modelLabel = "Téléchargement CV";
+
+    protected static ?string $navigationGroup = "Visiteurs";
+
+
+    protected static ?string $navigationLabel = "Téléchargements CV";
+
+
+    protected static ?string $pluralModelLabel = "Téléchargements CV";
+
+
+    public static function canCreate():bool{
+        return false;
+    }
+
+    public static function canEdit($record):bool{
+        return false;
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('visitor_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('count')
-                    ->required()
-                    ->numeric()
-                    ->default(1),
+                //
             ]);
     }
 
@@ -37,11 +52,13 @@ class CvDownloaderResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('visitor_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('visitor.ip')
+                    ->badge()
+                    ->color('success')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('count')
-                    ->numeric()
+                    ->badge()
+                    ->color('success')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -56,7 +73,7 @@ class CvDownloaderResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

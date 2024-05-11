@@ -17,7 +17,19 @@ class AchievmentResource extends Resource
 {
     protected static ?string $model = Achievment::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-check-badge';
+
+    protected static ?string $activeNavigationIcon = 'heroicon-s-check-badge';
+
+    protected static ?string $modelLabel = "Prouesse";
+
+    protected static ?string $navigationGroup = "A propos de moi";
+
+
+    protected static ?string $navigationLabel = "Prouesses";
+
+
+    protected static ?string $pluralModelLabel = "Prouesses";
 
     public static function form(Form $form): Form
     {
